@@ -12,22 +12,19 @@ import UIKit
  Output :: CollectionViewCell which contains one imageView and label
  */
 
-let gutterSpace: CGFloat = 8.0
-let viewSeparatorSpace: CGFloat = 12.0
-
 class PaymentOptionsCell: UICollectionViewCell {
-    
     
     lazy var headingLbl: UILabelX = {
         let label = UILabelX()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = UIColor.clear
         label.borderWidth = 0
-        label.borderColor = UIColor.white
+        label.borderColor = UIColor.black
         label.text = "Credit Card"
         label.textColor = UIColor.black
-        label.font = UIFont.systemFont(ofSize: 15)
-        label.textColor = ApplicationColors.TEXTCOLOR
+        label.font = ApplicationFonts.SYSTEM_REG_13
+        label.textColor = .black
+        label.textAlignment = .center
         label.numberOfLines = 0
         return label
     }()
@@ -36,12 +33,22 @@ class PaymentOptionsCell: UICollectionViewCell {
     let iconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = #imageLiteral(resourceName: "bank-card-front-side")
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
+        imageView.layer.borderWidth = 0
+        imageView.layer.borderColor = UIColor.black.cgColor
         return imageView
     }()
     
     override init(frame: CGRect){
         super.init(frame: frame)
+        self.contentView.layer.borderWidth = 0.75
+        self.contentView.layer.borderColor = UIColor.lightGray.cgColor
+        self.contentView.layer.cornerRadius = 2
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = self.contentView.bounds
+        gradientLayer.colors = [UIColor.lightGray.cgColor, UIColor.white.cgColor]
+//        self.contentView.layer.addSublayer(gradientLayer)
         setupViews()
     }
     
@@ -50,11 +57,13 @@ class PaymentOptionsCell: UICollectionViewCell {
     }
     
     fileprivate func setupViews(){
+        
         self.contentView.addSubview(headingLbl)
         self.contentView.addSubview(iconImageView)
         
         iconImageView.anchor(self.contentView.topAnchor, left: self.contentView.leftAnchor, bottom: nil, right: self.contentView.rightAnchor, topConstant: gutterSpace, leftConstant: gutterSpace, bottomConstant: 0, rightConstant: gutterSpace, widthConstant: 0, heightConstant: 0)
         
-        headingLbl.anchor(iconImageView.bottomAnchor, left: self.contentView.leftAnchor, bottom: self.contentView.bottomAnchor, right: self.contentView.rightAnchor, topConstant: viewSeparatorSpace, leftConstant: gutterSpace, bottomConstant: viewSeparatorSpace, rightConstant: gutterSpace, widthConstant: 0, heightConstant: 0)
+        headingLbl.anchor(iconImageView.bottomAnchor, left: self.contentView.leftAnchor, bottom: self.contentView.bottomAnchor, right: self.contentView.rightAnchor, topConstant: gutterSpace, leftConstant: gutterSpace, bottomConstant: 5, rightConstant: gutterSpace, widthConstant: 0, heightConstant: 0)
+        headingLbl.setContentCompressionResistancePriority(UILayoutPriority.required, for: .vertical)
     }
 }
