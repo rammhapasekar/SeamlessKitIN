@@ -25,6 +25,8 @@
 		6D3534B620AEF0260045BB79 /* ApplicationColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3534B520AEF0260045BB79 /* ApplicationColors.swift */; };
 		6D3534B920AEF7690045BB79 /* ApplicationFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3534B820AEF7690045BB79 /* ApplicationFonts.swift */; };
 		6D94DAE020B2990F00D9CA64 /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D94DADF20B2990E00D9CA64 /* GridLayout.swift */; };
+		6D94DAE320B4253A00D9CA64 /* UIViewController+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D94DAE220B4253A00D9CA64 /* UIViewController+Keyboard.swift */; };
+		6D94DAE520B4261500D9CA64 /* PromotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D94DAE420B4261500D9CA64 /* PromotionViewController.swift */; };
 		6DAF88FA20AECA70007A82D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAF88F920AECA70007A82D1 /* AppDelegate.swift */; };
 		6DAF88FF20AECA70007A82D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DAF88FD20AECA70007A82D1 /* Main.storyboard */; };
 		6DAF890120AECA70007A82D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DAF890020AECA70007A82D1 /* Assets.xcassets */; };
@@ -69,6 +71,8 @@
 		6D3534B520AEF0260045BB79 /* ApplicationColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationColors.swift; sourceTree = "<group>"; };
 		6D3534B820AEF7690045BB79 /* ApplicationFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationFonts.swift; sourceTree = "<group>"; };
 		6D94DADF20B2990E00D9CA64 /* GridLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GridLayout.swift; path = SeamlessKitIN/Cells/FlwoLayouts/GridLayout.swift; sourceTree = SOURCE_ROOT; };
+		6D94DAE220B4253A00D9CA64 /* UIViewController+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Keyboard.swift"; sourceTree = "<group>"; };
+		6D94DAE420B4261500D9CA64 /* PromotionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionViewController.swift; sourceTree = "<group>"; };
 		6DAF88F620AECA70007A82D1 /* SeamlessKitIN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeamlessKitIN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DAF88F920AECA70007A82D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6DAF88FE20AECA70007A82D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -111,6 +115,7 @@
 		6D35348F20AEDBCD0045BB79 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				6DAF890020AECA70007A82D1 /* Assets.xcassets */,
 				6DAF88FD20AECA70007A82D1 /* Main.storyboard */,
 				6DAF88F920AECA70007A82D1 /* AppDelegate.swift */,
 			);
@@ -121,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				6D35349120AEDC680045BB79 /* MainViewController.swift */,
+				6D94DAE420B4261500D9CA64 /* PromotionViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -149,6 +155,7 @@
 			children = (
 				6D3534A120AEEA260045BB79 /* UIView + AnchorWithConstraints.swift */,
 				6D3534B320AEEF5B0045BB79 /* UIColorExtension.swift */,
+				6D94DAE220B4253A00D9CA64 /* UIViewController+Keyboard.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -224,7 +231,6 @@
 		6DAF890D20AECA70007A82D1 /* SeamlessKitINTests */ = {
 			isa = PBXGroup;
 			children = (
-				6DAF890020AECA70007A82D1 /* Assets.xcassets */,
 				6DAF890E20AECA70007A82D1 /* SeamlessKitINTests.swift */,
 				6DAF891020AECA70007A82D1 /* Info.plist */,
 			);
@@ -387,8 +393,10 @@
 				6D3534B020AEEA4A0045BB79 /* UITextField + LeftPadded.swift in Sources */,
 				6DAF88FA20AECA70007A82D1 /* AppDelegate.swift in Sources */,
 				6D3534AD20AEEA260045BB79 /* UIViewAnchorPoint.swift in Sources */,
+				6D94DAE520B4261500D9CA64 /* PromotionViewController.swift in Sources */,
 				6D3534B420AEEF5B0045BB79 /* UIColorExtension.swift in Sources */,
 				6D94DAE020B2990F00D9CA64 /* GridLayout.swift in Sources */,
+				6D94DAE320B4253A00D9CA64 /* UIViewController+Keyboard.swift in Sources */,
 				6D3534A920AEEA260045BB79 /* UIButtonX.swift in Sources */,
 				6D3534A520AEEA260045BB79 /* UISliderX.swift in Sources */,
 				6D3534A420AEEA260045BB79 /* UIViewXRadialGradient.swift in Sources */,
