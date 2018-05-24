@@ -65,7 +65,12 @@ class PromotionsTableViewCell: UITableViewCell
     override init(style: UITableViewCellStyle, reuseIdentifier: String?)
     {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+        self.backgroundColor = UIColor.clear
+        self.layer.borderColor = ApplicationColors.TEXTCOLOR.cgColor
+        self.layer.borderWidth = 0.4
+        self.layer.cornerRadius = 5
+        self.clipsToBounds = true
+        self.selectionStyle = UITableViewCellSelectionStyle.none
         setupView()
     }
     

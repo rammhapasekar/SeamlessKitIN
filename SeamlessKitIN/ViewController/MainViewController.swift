@@ -246,6 +246,7 @@ class MainViewController: UIViewController,UICollectionViewDelegateFlowLayout,UI
             fatalError("Unexpected CollectionView Cell")
         }
         cell.headingLbl.text = "Option# \(indexPath.item)"
+        cell.iconImageView.image = UIImage(named: "icon\(indexPath.item)")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate) ??  #imageLiteral(resourceName: "bank-card-front-side").withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         return cell
     }
     

@@ -8,10 +8,15 @@
 
 import UIKit
 
+//MARK:
+//MARK:: Delegate
 protocol PromotionViewDelegate:class{
     func dismissView(sender: PromotionViewController)
 }
 
+
+//MARK:
+//MARK:: Class
 class PromotionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
     let cellSpacingHeight: CGFloat = 5
@@ -31,7 +36,7 @@ class PromotionViewController: UIViewController, UITableViewDataSource, UITableV
         let titleAttributes = [
             NSAttributedStringKey.font : ApplicationFonts.SYSTEM_BOLD_15,
             NSAttributedStringKey.foregroundColor : UIColor.white]
-        let attributeString = NSMutableAttributedString(string: "Dismiss Promotion VC",
+        let attributeString = NSMutableAttributedString(string: "PROMOTION",
                                                         attributes: titleAttributes)
         button.setAttributedTitle(attributeString, for: .normal)
         button.addTarget(self, action: #selector(dismissBtnClick), for: .touchUpInside)
@@ -42,27 +47,20 @@ class PromotionViewController: UIViewController, UITableViewDataSource, UITableV
         var tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = UIColor.white
-        
-        //MARK:
-        //MARK:: register cell for table view here
-        
         tableView.register(PromotionsTableViewCell.self, forCellReuseIdentifier: "promotionsTableViewCell")
-        
-        //MARK:
-        //MARK:: data sources and delegate for table view
-        
         tableView.delegate = self
         tableView.dataSource = self
-        
         tableView.separatorColor = UIColor.clear
         tableView.backgroundColor = UIColor.clear
-        
         tableView.estimatedRowHeight = 50
         tableView.rowHeight = UITableViewAutomaticDimension
-        
+        tableView.tableFooterView = UIView()
         return tableView
     }()    
     
+    
+    //MARK:
+    //MARK:: ViewController Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.frame = CGRect(x: 20, y: 50, width: viewWidth-40, height: viewHeight-80)
@@ -79,24 +77,21 @@ class PromotionViewController: UIViewController, UITableViewDataSource, UITableV
     
     fileprivate func setupVC()
     {
-//        self.view.addSubview(dismissBtn)
-        
-//        dismissBtn.anchor(self.view.safeAreaLayoutGuide.topAnchor, left: nil, bottom: nil, right: nil, topConstant: 100, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 250, heightConstant: 40)
-//        dismissBtn.anchorCenterXToSuperview(constant: 0)
-        
+        self.view.addSubview(dismissBtn)
         self.view.addSubview(promotionsTableView)
         
-        let views: [String: Any] = ["promotionsTableView" : promotionsTableView]
-        
-        let matrics = ["gutterValue" : 10]
-        
-        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[promotionsTableView]-|", options: [], metrics: matrics, views: views))
-        
-        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:|[promotionsTableView]|", options: [], metrics: nil, views: views))
+        dismissBtn.anchor(self.view.topAnchor, left: nil, bottom: nil, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: self.view.frame.width, heightConstant: 40)
+        dismissBtn.anchorCenterXToSuperview(constant: 0)
+        promotionsTableView.anchor(dismissBtn.bottomAnchor, left: self.view.leftAnchor, bottom: self.view.safeAreaLayoutGuide.bottomAnchor, right: self.view.rightAnchor, topConstant: viewSeparatorSpace, leftConstant: gutterSpace, bottomConstant: viewSeparatorSpace, rightConstant: gutterSpace, widthConstant: 0, heightConstant: 0)
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
     //MARK:
-    //MARK:: data sources and delegate methods
+    //MARK:: TableView methods
     
     func numberOfSections(in tableView: UITableView) -> Int
     {
@@ -117,20 +112,11 @@ class PromotionViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "promotionsTableViewCell", for: indexPath) as! PromotionsTableViewCell
-        
-        // add border and color
-        cell.backgroundColor = UIColor.clear
-        cell.layer.borderColor = ApplicationColors.TEXTCOLOR.cgColor
-        cell.layer.borderWidth = 1
-        cell.layer.cornerRadius = 5
-        cell.clipsToBounds = true
-        
-        cell.selectionStyle = UITableViewCellSelectionStyle.none
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "promotionsTableViewCell", for: indexPath) as? PromotionsTableViewCell else{
+            fatalError("Unexpected TableView Cell")
+        }
         cell.promotionTitleLabel.text = "Promotion \(indexPath.section + 1)"
-        print("----\(indexPath.row)")
         cell.promotionDescriptionLabel.text = "Get Rs. 50 off on purchase above Rs. 2000 on use of VISA credit cards."
-        
         return cell
     }
     
@@ -138,14 +124,13 @@ class PromotionViewController: UIViewController, UITableViewDataSource, UITableV
         return 5
     }
     
-    
+    //MARK:
+    //MARK:: Button click handling
+    /**
+     Method: dismissBtnClick
+     This method envokes the delegate method.
+     */
     @objc fileprivate func dismissBtnClick(){
         self.promotionDelegate?.dismissView(sender: self)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 }
