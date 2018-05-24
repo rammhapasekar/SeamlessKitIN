@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		524EE10020B52E7E008F8BE2 /* PromotionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524EE0FF20B52E7E008F8BE2 /* PromotionsTableViewCell.swift */; };
 		6D35349220AEDC680045BB79 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35349120AEDC680045BB79 /* MainViewController.swift */; };
 		6D35349520AEE9330045BB79 /* PaymentOptionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35349420AEE9330045BB79 /* PaymentOptionsCell.swift */; };
 		6D3534A420AEEA260045BB79 /* UIViewXRadialGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35349920AEEA250045BB79 /* UIViewXRadialGradient.swift */; };
@@ -53,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		524EE0FF20B52E7E008F8BE2 /* PromotionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionsTableViewCell.swift; sourceTree = "<group>"; };
 		6D35349120AEDC680045BB79 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		6D35349420AEE9330045BB79 /* PaymentOptionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentOptionsCell.swift; sourceTree = "<group>"; };
 		6D35349920AEEA250045BB79 /* UIViewXRadialGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewXRadialGradient.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			children = (
 				6D94DAE120B2992400D9CA64 /* FlwoLayouts */,
 				6D35349420AEE9330045BB79 /* PaymentOptionsCell.swift */,
+				524EE0FF20B52E7E008F8BE2 /* PromotionsTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 				6D3534A520AEEA260045BB79 /* UISliderX.swift in Sources */,
 				6D3534A420AEEA260045BB79 /* UIViewXRadialGradient.swift in Sources */,
 				6D3534AA20AEEA260045BB79 /* UIImageViewX.swift in Sources */,
+				524EE10020B52E7E008F8BE2 /* PromotionsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,7 +507,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -554,7 +558,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -569,7 +573,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 46K2RRCY2M;
 				INFOPLIST_FILE = SeamlessKitIN/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ccAvenue.dev.SeamlessKitIN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -585,7 +589,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 46K2RRCY2M;
 				INFOPLIST_FILE = SeamlessKitIN/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ccAvenue.dev.SeamlessKitIN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
