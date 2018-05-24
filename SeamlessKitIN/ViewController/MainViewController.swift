@@ -157,7 +157,6 @@ class MainViewController: UIViewController,UICollectionViewDelegateFlowLayout,UI
         print("Into MainViewController")
         setupViews()
 //        addSwipeGesture()
-        // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {
@@ -171,6 +170,10 @@ class MainViewController: UIViewController,UICollectionViewDelegateFlowLayout,UI
         self.promotionBtn.addGestureRecognizer(swipeUp)
     }
     
+    /**
+     Method- setupViews
+     The job of this method is to add and align all the views in the superView
+     */
     fileprivate func setupViews(){
         collectionView.removeConstraints(collectionViewConstraints)
         self.collectionView.collectionViewLayout.invalidateLayout()
@@ -230,6 +233,9 @@ class MainViewController: UIViewController,UICollectionViewDelegateFlowLayout,UI
     
     //MARK:
     //MARK: CollectionView Methods
+    /**
+     The following methods are delegate and dataSource methods of CollectionView which are we implementing here, the job of this method is to collect the data of how many items are there in the section, the display of the custom collectionViewCell (ie. PaymentOptionsCell) and the handling of the cell selection
+     */
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return numberOfItems
@@ -247,6 +253,11 @@ class MainViewController: UIViewController,UICollectionViewDelegateFlowLayout,UI
         print("Collection View cell click at :: \(indexPath.item)")
     }
     
+    /**
+     Method - displayPromotions
+     1) In this method we will create an object of PromotionViewController class and pass that object to the presentpopupViewController with animation type .BottomBottom, which will present the view from the bottom of the display
+     2) also we will hook-up the delegate object of PromotionViewDelegate with the ViewController for the further communication between the VC
+     */
     @objc fileprivate func displayPromotions(){
         let vc = PromotionViewController()
         vc.promotionDelegate = self
@@ -255,7 +266,10 @@ class MainViewController: UIViewController,UICollectionViewDelegateFlowLayout,UI
     
     //MARK:
     //MARK:: PromotionViewDelegate Methods
-    
+    /**
+     Method- dismissView(sender:)
+     we are defining this protocol method here, the job of this method is to dismiss PromotionViewController from the view hierarchy
+     */
     func dismissView(sender: PromotionViewController) {
         self.dismissPopupViewController(animationType: .BottomBottom)
     }
