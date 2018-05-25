@@ -27,7 +27,7 @@ class PaymentOptionsCell: UICollectionViewCell {
         label.borderWidth = 0
         label.borderColor = UIColor.black
         label.text = "Credit Card"
-        label.textColor = ApplicationColors.TEXTCOLOR
+        label.textColor = ApplicationColors.TEXTCOLOR_DARK
         label.font = ApplicationFonts.SYSTEM_REG_13
         label.textColor = .black
         label.textAlignment = .center
@@ -42,15 +42,15 @@ class PaymentOptionsCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFit
         imageView.layer.borderWidth = 0
         imageView.layer.borderColor = UIColor.black.cgColor
-        imageView.tintColor = ApplicationColors.TEXTCOLOR
+        imageView.tintColor = ApplicationColors.TEXTCOLOR_DARK
         return imageView
     }()
     
     override init(frame: CGRect){
         super.init(frame: frame)
         self.contentView.layer.borderWidth = 0.4
-        self.contentView.layer.borderColor = ApplicationColors.TEXTCOLOR.cgColor
-        self.contentView.layer.cornerRadius = 2
+        self.contentView.layer.borderColor = ApplicationColors.BORDER_COLOR.cgColor
+        self.contentView.layer.cornerRadius = 0
         self.contentView.backgroundColor = .white
         
         let gradientLayer = CAGradientLayer()
@@ -64,15 +64,15 @@ class PaymentOptionsCell: UICollectionViewCell {
         didSet{
             if self.isSelected
             {
-                self.iconImageView.tintColor = ApplicationColors.HEADINGCOLOR
-                self.headingLbl.textColor = ApplicationColors.HEADINGCOLOR
-                self.iconImageView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
-                self.indicatorView.backgroundColor = ApplicationColors.HEADINGCOLOR
+                self.iconImageView.tintColor = ApplicationColors.SELECTION_COLOR
+                self.headingLbl.textColor = ApplicationColors.SELECTION_COLOR
+                self.iconImageView.transform = CGAffineTransform(scaleX: 1.15, y: 1.15)
+                self.indicatorView.backgroundColor = ApplicationColors.SELECTION_COLOR
             }
             else
             {
-                self.iconImageView.tintColor = ApplicationColors.TEXTCOLOR
-                self.headingLbl.textColor = ApplicationColors.TEXTCOLOR
+                self.iconImageView.tintColor = ApplicationColors.TEXTCOLOR_DARK
+                self.headingLbl.textColor = ApplicationColors.TEXTCOLOR_DARK
                 self.iconImageView.transform = .identity
                 self.indicatorView.backgroundColor = UIColor.clear
             }

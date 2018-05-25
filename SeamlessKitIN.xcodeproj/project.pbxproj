@@ -28,6 +28,7 @@
 		6D94DAE020B2990F00D9CA64 /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D94DADF20B2990E00D9CA64 /* GridLayout.swift */; };
 		6D94DAE320B4253A00D9CA64 /* UIViewController+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D94DAE220B4253A00D9CA64 /* UIViewController+Keyboard.swift */; };
 		6D94DAE520B4261500D9CA64 /* PromotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D94DAE420B4261500D9CA64 /* PromotionViewController.swift */; };
+		6D94DAE920B7E21800D9CA64 /* SavedCardsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D94DAE820B7E21800D9CA64 /* SavedCardsCell.swift */; };
 		6DAF88FA20AECA70007A82D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAF88F920AECA70007A82D1 /* AppDelegate.swift */; };
 		6DAF88FF20AECA70007A82D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DAF88FD20AECA70007A82D1 /* Main.storyboard */; };
 		6DAF890120AECA70007A82D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DAF890020AECA70007A82D1 /* Assets.xcassets */; };
@@ -75,6 +76,7 @@
 		6D94DADF20B2990E00D9CA64 /* GridLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GridLayout.swift; path = SeamlessKitIN/Cells/FlwoLayouts/GridLayout.swift; sourceTree = SOURCE_ROOT; };
 		6D94DAE220B4253A00D9CA64 /* UIViewController+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Keyboard.swift"; sourceTree = "<group>"; };
 		6D94DAE420B4261500D9CA64 /* PromotionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionViewController.swift; sourceTree = "<group>"; };
+		6D94DAE820B7E21800D9CA64 /* SavedCardsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedCardsCell.swift; sourceTree = "<group>"; };
 		6DAF88F620AECA70007A82D1 /* SeamlessKitIN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeamlessKitIN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DAF88F920AECA70007A82D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6DAF88FE20AECA70007A82D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -136,9 +138,8 @@
 		6D35349320AEE8FA0045BB79 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				6D94DAE120B2992400D9CA64 /* FlwoLayouts */,
-				6D35349420AEE9330045BB79 /* PaymentOptionsCell.swift */,
-				524EE0FF20B52E7E008F8BE2 /* PromotionsTableViewCell.swift */,
+				6D94DAE720B7E1DD00D9CA64 /* CollectionViewCells */,
+				6D94DAE620B7E1CF00D9CA64 /* TableViewCells */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -196,6 +197,24 @@
 				6D94DADF20B2990E00D9CA64 /* GridLayout.swift */,
 			);
 			path = FlwoLayouts;
+			sourceTree = "<group>";
+		};
+		6D94DAE620B7E1CF00D9CA64 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				524EE0FF20B52E7E008F8BE2 /* PromotionsTableViewCell.swift */,
+				6D94DAE820B7E21800D9CA64 /* SavedCardsCell.swift */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		6D94DAE720B7E1DD00D9CA64 /* CollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				6D94DAE120B2992400D9CA64 /* FlwoLayouts */,
+				6D35349420AEE9330045BB79 /* PaymentOptionsCell.swift */,
+			);
+			path = CollectionViewCells;
 			sourceTree = "<group>";
 		};
 		6DAF88ED20AECA70007A82D1 = {
@@ -391,6 +410,7 @@
 				6D3534B620AEF0260045BB79 /* ApplicationColors.swift in Sources */,
 				6D3534AB20AEEA260045BB79 /* UILabelX.swift in Sources */,
 				6D3534B920AEF7690045BB79 /* ApplicationFonts.swift in Sources */,
+				6D94DAE920B7E21800D9CA64 /* SavedCardsCell.swift in Sources */,
 				6D35349520AEE9330045BB79 /* PaymentOptionsCell.swift in Sources */,
 				6D3534A620AEEA260045BB79 /* UIViewControllerX.swift in Sources */,
 				6D3534B020AEEA4A0045BB79 /* UITextField + LeftPadded.swift in Sources */,

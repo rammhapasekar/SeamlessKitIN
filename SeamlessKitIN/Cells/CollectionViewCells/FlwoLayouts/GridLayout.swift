@@ -25,21 +25,21 @@ class GridLayout: UICollectionViewFlowLayout {
     }
     
     func itemWidth() -> CGFloat {
-        if numberOfItems > 5 && numberOfItems <= 8{
-            if numberOfItems == 6 {
-                return ((viewWidth)/3)-self.innerSpace
-            }
-            else if numberOfItems == 7{
-                return ((viewWidth-30)/3)-self.innerSpace
-            }
-            return ((viewWidth)/self.numberOfCellsOnRow)-self.innerSpace
-        }
-        else{
+//        if numberOfItems > 5 && numberOfItems <= 8{
+//            if numberOfItems == 6 {
+//                return ((viewWidth)/3)-self.innerSpace
+//            }
+//            else if numberOfItems == 7{
+//                return ((viewWidth-30)/3)-self.innerSpace
+//            }
+//            return ((viewWidth)/self.numberOfCellsOnRow)-self.innerSpace
+//        }
+//        else{
             if numberOfItems > 4 {
                 return ((viewWidth-30)/self.numberOfCellsOnRow)-self.innerSpace
             }
             return (viewWidth/CGFloat(numberOfItems))-self.innerSpace
-        }
+//        }
     }
     
     func itemHeight() -> CGFloat{

@@ -13,17 +13,15 @@ protocol PromotionViewDelegate1:class{
 }
 
 class PromotionsTableViewCell: UITableViewCell
-{
-    
+{    
     weak var promotionDelegate: PromotionViewDelegate1?
-    
-    
+
     lazy var promotionTitleLabel : UILabel = {
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.layer.borderWidth = 0
         label.numberOfLines = 0
-        label.font = ApplicationFonts.SYSTEM_BOLD_13
+        label.font = ApplicationFonts.SYSTEM_BOLD_15
         label.textColor = ApplicationColors.HEADINGCOLOR
         
         return label
@@ -48,7 +46,7 @@ class PromotionsTableViewCell: UITableViewCell
         button.cornerRadius = 2
         button.translatesAutoresizingMaskIntoConstraints = false
         let titleAttributes = [
-            NSAttributedStringKey.font : ApplicationFonts.SYSTEM_LIGHT_13,
+            NSAttributedStringKey.font : ApplicationFonts.SYSTEM_REG_15,
             NSAttributedStringKey.foregroundColor : UIColor.white]
         let attributeString = NSMutableAttributedString(string: "Apply",
                                                         attributes: titleAttributes)
@@ -66,7 +64,7 @@ class PromotionsTableViewCell: UITableViewCell
     {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = UIColor.clear
-        self.layer.borderColor = ApplicationColors.TEXTCOLOR.cgColor
+        self.layer.borderColor = ApplicationColors.BORDER_COLOR.cgColor
         self.layer.borderWidth = 0.4
         self.layer.cornerRadius = 5
         self.clipsToBounds = true
@@ -80,23 +78,9 @@ class PromotionsTableViewCell: UITableViewCell
         contentView.addSubview(promotionDescriptionLabel)
         contentView.addSubview(applyPromotionButton)
         
-        let views: [String: Any] = ["promotionTitleLabel" : promotionTitleLabel,
-                                    "promotionDescriptionLabel" : promotionDescriptionLabel,
-                                    "applyPromotionButton" : applyPromotionButton]
-        
-        let matrics = ["gutterValue" : 10]
-        
-        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(gutterValue)-[promotionTitleLabel]-[applyPromotionButton(==50)]-(gutterValue)-|", options: .alignAllFirstBaseline, metrics: matrics, views: views))
-        
-        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(gutterValue)-[promotionDescriptionLabel]-(gutterValue)-|", options: .alignAllFirstBaseline, metrics: matrics, views: views))
-        
-        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[promotionTitleLabel]-[promotionDescriptionLabel]-|", options: [], metrics: nil, views: views))
-        
-        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[applyPromotionButton(==23)]-[promotionDescriptionLabel]-|", options: [], metrics: nil, views: views))
-        
-        promotionTitleLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1000), for: UILayoutConstraintAxis.horizontal)
-        
-        promotionDescriptionLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1000), for: UILayoutConstraintAxis.vertical)
+        promotionTitleLabel.anchor(contentView.topAnchor, left: contentView.leftAnchor, bottom: nil, right: nil, topConstant: viewSeparatorSpace, leftConstant: gutterSpace, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        applyPromotionButton.anchor(contentView.topAnchor, left: promotionTitleLabel.rightAnchor, bottom: nil, right: contentView.rightAnchor, topConstant: gutterSpace, leftConstant: gutterSpace, bottomConstant: 0, rightConstant: gutterSpace, widthConstant: 60, heightConstant: 30)
+        promotionDescriptionLabel.anchor(applyPromotionButton.bottomAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, topConstant: gutterSpace, leftConstant: gutterSpace, bottomConstant: gutterSpace, rightConstant: gutterSpace, widthConstant: 0, heightConstant: 0)
     }
     
     @objc fileprivate func applyPromotionButtonClicked()

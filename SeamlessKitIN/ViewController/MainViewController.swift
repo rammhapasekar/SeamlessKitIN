@@ -27,14 +27,30 @@ class MainViewController: UIViewController,UICollectionViewDelegateFlowLayout,UI
     
     let headerView: UIViewX = {
         let view = UIViewX()
-        view.backgroundColor = ApplicationColors.HEADINGCOLOR
+//        view.backgroundColor = ApplicationColors.HEADINGCOLOR
+        view.firstColor = ApplicationColors.HEADINGCOLOR
+        view.secondColor = ApplicationColors.HEADINGCOLOR
         return view
+    }()
+    
+    lazy var backBtn: UIButtonX = {
+        let button = UIButtonX()
+        button.backgroundColor = UIColor.clear
+        button.borderColor = UIColor.clear
+        button.borderWidth = 0
+        button.cornerRadius = 0
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(#imageLiteral(resourceName: "back_btn").withRenderingMode(.alwaysTemplate), for: .normal)
+        button.tintColor = ApplicationColors.HEADING_TEXTCOLOR
+//        button.imageView?.tintColor = ApplicationColors.HEADINGCOLOR
+        button.addTarget(self, action: #selector(minusBtnClick), for: .touchUpInside)
+        return button
     }()
     
     let iconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = #imageLiteral(resourceName: "bank-card-front-side").withRenderingMode(.alwaysTemplate)
-        imageView.tintColor = ApplicationColors.TEXTCOLOR
+        imageView.tintColor = ApplicationColors.HEADING_TEXTCOLOR
         imageView.contentMode = .scaleAspectFit
         imageView.layer.borderWidth = 0
         imageView.layer.borderColor = UIColor.black.cgColor
@@ -48,7 +64,7 @@ class MainViewController: UIViewController,UICollectionViewDelegateFlowLayout,UI
         label.borderWidth = 0
         label.borderColor = UIColor.black
         label.text = "\u{20B9} 2000.0"
-        label.textColor = ApplicationColors.TEXTCOLOR
+        label.textColor = ApplicationColors.HEADING_TEXTCOLOR
         label.font = ApplicationFonts.SYSTEM_BOLD_15
         label.numberOfLines = 0
         return label
@@ -61,7 +77,7 @@ class MainViewController: UIViewController,UICollectionViewDelegateFlowLayout,UI
         label.borderWidth = 0
         label.borderColor = UIColor.black
         label.text = "Order#: 1234567890123456789012345"
-        label.textColor = ApplicationColors.TEXTCOLOR
+        label.textColor = ApplicationColors.HEADING_TEXTCOLOR
         label.font = ApplicationFonts.SYSTEM_REG_13
         label.numberOfLines = 0
         return label
@@ -78,7 +94,7 @@ class MainViewController: UIViewController,UICollectionViewDelegateFlowLayout,UI
             cv.showsHorizontalScrollIndicator = true
             cv.alwaysBounceHorizontal = true
             cv.showsVerticalScrollIndicator = false
-            cv.indicatorStyle = UIScrollViewIndicatorStyle.default
+            cv.indicatorStyle = UIScrollViewIndicatorStyle.white
             return cv
     }()
     
@@ -144,6 +160,9 @@ class MainViewController: UIViewController,UICollectionViewDelegateFlowLayout,UI
         let attributeString = NSMutableAttributedString(string: "PROMOTION",
                                                         attributes: titleAttributes)
         button.setAttributedTitle(attributeString, for: .normal)
+        button.shadowColor = UIColor.black
+        button.shadowRadius = 5
+        button.shadowOpacity = 0.3
         button.addTarget(self, action: #selector(displayPromotions), for: .touchUpInside)
         return button
     }()
@@ -156,7 +175,7 @@ class MainViewController: UIViewController,UICollectionViewDelegateFlowLayout,UI
         self.view.backgroundColor = ApplicationColors.BACKGROUNDCOLOR
         print("Into MainViewController")
         setupViews()
-//        addSwipeGesture()
+        addSwipeGesture()
     }
     
     override func didReceiveMemoryWarning() {
@@ -180,41 +199,44 @@ class MainViewController: UIViewController,UICollectionViewDelegateFlowLayout,UI
         self.collectionView.setCollectionViewLayout(GridLayout(), animated: false)
         
         self.view.addSubview(headerView)
+        headerView.addSubview(backBtn)
         headerView.addSubview(iconImageView)
         headerView.addSubview(orderAmtLbl)
         headerView.addSubview(orderRefNumber)
         self.view.addSubview(collectionView)
-        self.view.addSubview(minusBtn)
-        self.view.addSubview(numberOfItemsCount)
-        self.view.addSubview(plusBtn)
+//        self.view.addSubview(minusBtn)
+//        self.view.addSubview(numberOfItemsCount)
+//        self.view.addSubview(plusBtn)
         self.view.addSubview(promotionBtn)
         
         headerView.anchor(self.view.safeAreaLayoutGuide.topAnchor, left: self.view.safeAreaLayoutGuide.leftAnchor, bottom: nil, right: self.view.safeAreaLayoutGuide.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         
-        iconImageView.anchor(headerView.topAnchor, left: headerView.leftAnchor, bottom: headerView.bottomAnchor, right: nil, topConstant: gutterSpace, leftConstant: gutterSpace, bottomConstant: gutterSpace, rightConstant: 0, widthConstant: 60, heightConstant: 60)
+        backBtn.anchor(headerView.topAnchor, left: headerView.leftAnchor, bottom: nil, right: nil, topConstant: gutterSpace, leftConstant: gutterSpace, bottomConstant: 0, rightConstant: 0, widthConstant: 25, heightConstant: 25)
+        
+        iconImageView.anchor(backBtn.bottomAnchor, left: headerView.leftAnchor, bottom: headerView.bottomAnchor, right: nil, topConstant: gutterSpace, leftConstant: gutterSpace, bottomConstant: gutterSpace, rightConstant: 0, widthConstant: 60, heightConstant: 60)
         
         orderAmtLbl.anchor(iconImageView.topAnchor, left: iconImageView.rightAnchor, bottom: nil, right: headerView.rightAnchor, topConstant: viewSeparatorSpace, leftConstant: viewSeparatorSpace, bottomConstant: 0, rightConstant: gutterSpace, widthConstant: 0, heightConstant: 0)
         
         orderRefNumber.anchor(orderAmtLbl.bottomAnchor, left: iconImageView.rightAnchor, bottom: nil, right: headerView.rightAnchor, topConstant: 5, leftConstant: viewSeparatorSpace, bottomConstant: 0, rightConstant: gutterSpace, widthConstant: 0, heightConstant: 0)
         
         let itemHeight = GridLayout().itemHeight()
-        if numberOfItems <= 5
-        {
+//        if numberOfItems <= 5
+//        {
             collectionViewConstraints = collectionView.anchorWithReturnAnchors(headerView.bottomAnchor, left: self.view.safeAreaLayoutGuide.leftAnchor, bottom: nil, right: self.view.safeAreaLayoutGuide.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: itemHeight)
-        }
-        else{
-            collectionViewConstraints = collectionView.anchorWithReturnAnchors(headerView.bottomAnchor, left: self.view.safeAreaLayoutGuide.leftAnchor, bottom: nil, right: self.view.safeAreaLayoutGuide.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: itemHeight*2)
-        }
+//        }
+//        else{
+//            collectionViewConstraints = collectionView.anchorWithReturnAnchors(headerView.bottomAnchor, left: self.view.safeAreaLayoutGuide.leftAnchor, bottom: nil, right: self.view.safeAreaLayoutGuide.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: itemHeight*2)
+//        }
         
-        minusBtn.anchor(collectionView.bottomAnchor, left: self.view.safeAreaLayoutGuide.leftAnchor, bottom: nil, right: nil, topConstant: 25, leftConstant: 15, bottomConstant: 0, rightConstant: 0, widthConstant: 40, heightConstant: 40)
+//        minusBtn.anchor(collectionView.bottomAnchor, left: self.view.safeAreaLayoutGuide.leftAnchor, bottom: nil, right: nil, topConstant: 25, leftConstant: 15, bottomConstant: 0, rightConstant: 0, widthConstant: 40, heightConstant: 40)
+//
+//        numberOfItemsCount.anchor(minusBtn.topAnchor, left: minusBtn.rightAnchor, bottom: nil, right: nil, topConstant: 15, leftConstant: 25, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+//
+//        plusBtn.anchor(minusBtn.topAnchor, left: numberOfItemsCount.rightAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: 15, bottomConstant: 0, rightConstant: 0, widthConstant: 40, heightConstant: 40)
+//
+//         numberOfItemsCount.text = "\(numberOfItems)"
         
-        numberOfItemsCount.anchor(minusBtn.topAnchor, left: minusBtn.rightAnchor, bottom: nil, right: nil, topConstant: 15, leftConstant: 25, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
-        
-        plusBtn.anchor(minusBtn.topAnchor, left: numberOfItemsCount.rightAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: 15, bottomConstant: 0, rightConstant: 0, widthConstant: 40, heightConstant: 40)
-        
-         numberOfItemsCount.text = "\(numberOfItems)"
-        
-        promotionBtn.anchor(nil, left: nil, bottom: self.view.safeAreaLayoutGuide.bottomAnchor, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: viewWidth-40, heightConstant: 40)
+        promotionBtn.anchor(nil, left: nil, bottom: self.view.safeAreaLayoutGuide.bottomAnchor, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: viewWidth-24, heightConstant: 50)
         promotionBtn.anchorCenterXToSuperview(constant: 0)
     }
 
