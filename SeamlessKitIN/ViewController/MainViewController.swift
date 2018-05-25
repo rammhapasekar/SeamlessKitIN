@@ -85,7 +85,7 @@ class MainViewController: UIViewController,UICollectionViewDelegateFlowLayout,UI
     
     lazy var collectionView: UICollectionView =
         {
-            let layout = GridLayout()
+            let layout = PaymentOptionGridLayout()
             let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
             cv.backgroundColor = .white
             cv.delegate = self
@@ -196,7 +196,7 @@ class MainViewController: UIViewController,UICollectionViewDelegateFlowLayout,UI
     fileprivate func setupViews(){
         collectionView.removeConstraints(collectionViewConstraints)
         self.collectionView.collectionViewLayout.invalidateLayout()
-        self.collectionView.setCollectionViewLayout(GridLayout(), animated: false)
+        self.collectionView.setCollectionViewLayout(PaymentOptionGridLayout(), animated: false)
         
         self.view.addSubview(headerView)
         headerView.addSubview(backBtn)
@@ -219,7 +219,7 @@ class MainViewController: UIViewController,UICollectionViewDelegateFlowLayout,UI
         
         orderRefNumber.anchor(orderAmtLbl.bottomAnchor, left: iconImageView.rightAnchor, bottom: nil, right: headerView.rightAnchor, topConstant: 5, leftConstant: viewSeparatorSpace, bottomConstant: 0, rightConstant: gutterSpace, widthConstant: 0, heightConstant: 0)
         
-        let itemHeight = GridLayout().itemHeight()
+        let itemHeight = PaymentOptionGridLayout().itemHeight()
 //        if numberOfItems <= 5
 //        {
             collectionViewConstraints = collectionView.anchorWithReturnAnchors(headerView.bottomAnchor, left: self.view.safeAreaLayoutGuide.leftAnchor, bottom: nil, right: self.view.safeAreaLayoutGuide.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: itemHeight)
