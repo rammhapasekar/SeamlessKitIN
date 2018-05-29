@@ -29,4 +29,6 @@ struct ApplicationFonts {
     static let SYSTEM_MEDIUM_15 = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.medium)
     
     static let SYSTEM_BOLD_15 = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.bold)
+    
+    static let SYSTEM_BOLD_20 = UIFont.systemFont(ofSize: 20, weight: UIFont.Weight.bold)
 }

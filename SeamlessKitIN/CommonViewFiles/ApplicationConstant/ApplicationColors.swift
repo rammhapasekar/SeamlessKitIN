@@ -28,7 +28,7 @@ struct ApplicationColors {
     
     static let BACKGROUNDCOLOR = UIColor(r: 240, g: 240, b: 240, a: 1)
     
-    static let BUTTONCOLOR = UIColor(r: 252, g: 204, b: 85, a: 1)
+    static let BUTTONCOLOR = UIColor(r: 26, g: 178, b: 147, a: 1)
     
     static let SELECTION_COLOR = UIColor(r: 69, g: 169, b: 246, a: 1)
 }

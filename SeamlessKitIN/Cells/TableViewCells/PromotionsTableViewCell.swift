@@ -64,8 +64,8 @@ class PromotionsTableViewCell: UITableViewCell
     {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = UIColor.clear
-        self.layer.borderColor = ApplicationColors.BORDER_COLOR.cgColor
-        self.layer.borderWidth = 0.4
+        self.layer.borderColor = UIColor.red.cgColor//ApplicationColors.BORDER_COLOR.cgColor
+        self.layer.borderWidth = 1
         self.layer.cornerRadius = 5
         self.clipsToBounds = true
         self.selectionStyle = UITableViewCellSelectionStyle.none
