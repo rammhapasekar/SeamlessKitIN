@@ -2,21 +2,23 @@
 //  GridLayout.swift
 //  SeamlessKitIN
 //
-//  Created by Ram Mhapasekar on 5/21/18.
+//  Created by Mayur Shinde on 25/05/18.
 //  Copyright © 2018 Ram Mhapasekar. All rights reserved.
 //
 
 import UIKit
 
-class GridLayout: UICollectionViewFlowLayout {
-    let innerSpace: CGFloat = 0
-    let numberOfCellsOnRow: CGFloat = 4
+class GridLayout: UICollectionViewFlowLayout
+{    
+    let innerSpace: CGFloat = 20
+    let numberOfCellsOnRow: CGFloat = 3
     
     override init() {
         super.init()
         self.minimumLineSpacing = innerSpace
         self.minimumInteritemSpacing = innerSpace
-        self.scrollDirection = .horizontal
+        self.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        //self.scrollDirection = .vertical
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -24,27 +26,18 @@ class GridLayout: UICollectionViewFlowLayout {
         super.init(coder: aDecoder)
     }
     
-    func itemWidth() -> CGFloat {
-//        if numberOfItems > 5 && numberOfItems <= 8{
-//            if numberOfItems == 6 {
-//                return ((viewWidth)/3)-self.innerSpace
-//            }
-//            else if numberOfItems == 7{
-//                return ((viewWidth-30)/3)-self.innerSpace
-//            }
-//            return ((viewWidth)/self.numberOfCellsOnRow)-self.innerSpace
-//        }
-//        else{
-            if numberOfItems > 4 {
-                return ((viewWidth-30)/self.numberOfCellsOnRow)-self.innerSpace
-            }
-            return (viewWidth/CGFloat(numberOfItems))-self.innerSpace
-//        }
+    func itemWidth() -> CGFloat
+    {
+        if numberOfItems > 4 {
+            return ((viewWidth)/self.numberOfCellsOnRow)-self.innerSpace
+        }
+        return (viewWidth/CGFloat(numberOfItems))
     }
     
-    func itemHeight() -> CGFloat{
-
-            return ((viewWidth-30)/self.numberOfCellsOnRow)-self.innerSpace
+    func itemHeight() -> CGFloat
+    {
+        
+        return 60//((viewWidth-30)/self.numberOfCellsOnRow)-self.innerSpace
     }
     
     override var itemSize: CGSize {
