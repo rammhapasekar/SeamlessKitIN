@@ -14,14 +14,9 @@ let gutterSpace: CGFloat = 8.0
 let viewSeparatorSpace: CGFloat = 12.0
 var numberOfItems = 9
 
-class MainViewController: UIViewController,UICollectionViewDelegateFlowLayout,UICollectionViewDelegate,UICollectionViewDataSource,PromotionViewDelegate {
-    
+class MainViewController: UIViewController,UICollectionViewDelegateFlowLayout,UICollectionViewDelegate,UICollectionViewDataSource,PromotionViewDelegate,UITableViewDelegate,UITableViewDataSource {
     
     //MARK: Variables
-    let cellId = "PaymentOptionsCell"
-    let commonCellId = "commonCell"
-    
-    var paymentOptionCollectionViewConstraints = [NSLayoutConstraint]()
     
     //MARK:
     //MARK:: Views
@@ -91,7 +86,7 @@ class MainViewController: UIViewController,UICollectionViewDelegateFlowLayout,UI
             cv.backgroundColor = .white
             cv.delegate = self
             cv.dataSource = self
-            cv.register(PaymentOptionsCell.self, forCellWithReuseIdentifier: cellId)
+            cv.register(PaymentOptionsCell.self, forCellWithReuseIdentifier: paymentCellId)
             cv.showsHorizontalScrollIndicator = true
             cv.alwaysBounceHorizontal = true
             cv.showsVerticalScrollIndicator = false
@@ -236,6 +231,27 @@ class MainViewController: UIViewController,UICollectionViewDelegateFlowLayout,UI
         return button
     }()
     
+    lazy var saveCardsTableView:UITableView = {
+        let tableView = UITableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(SavedCardsCell.self, forCellReuseIdentifier: saveCardCellId)
+        tableView.backgroundColor = UIColor.clear
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.contentMode = .scaleToFill
+        tableView.rowHeight = 40
+        tableView.rowHeight = UITableViewAutomaticDimension
+//        tableView.layer.shadowOpacity = 1
+//        tableView.layer.shadowColor = UIColor(red: 33/255.0, green: 42/255.0, blue: 60/255.0, alpha: 1).cgColor
+//        tableView.layer.shadowRadius = 1
+//        tableView.layer.shadowOffset.height  = 1
+        tableView.layer.borderWidth = 0
+        tableView.tag = 101
+        tableView.sectionHeaderHeight = 0
+        return tableView
+    }()
+    
+    
     lazy var promotionBtn: UIButtonX = {
         let button = UIButtonX()
         button.backgroundColor = ApplicationColors.BUTTONCOLOR
@@ -304,9 +320,6 @@ class MainViewController: UIViewController,UICollectionViewDelegateFlowLayout,UI
         headerView.addSubview(iconImageView)
         headerView.addSubview(orderAmtLbl)
         headerView.addSubview(orderRefNumber)
-        self.view.addSubview(paymentOptionsCollectionView)
-        
-        
 //        self.view.addSubview(minusBtn)
 //        self.view.addSubview(numberOfItemsCount)
 //        self.view.addSubview(plusBtn)
@@ -342,6 +355,8 @@ class MainViewController: UIViewController,UICollectionViewDelegateFlowLayout,UI
 //        plusBtn.anchor(minusBtn.topAnchor, left: numberOfItemsCount.rightAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: 15, bottomConstant: 0, rightConstant: 0, widthConstant: 40, heightConstant: 40)
 //
 //         numberOfItemsCount.text = "\(numberOfItems)"
+        
+        saveCardsTableView.anchor(collectionView.bottomAnchor, left: self.view.leftAnchor, bottom: nil, right: self.view.rightAnchor, topConstant: gutterSpace, leftConstant: gutterSpace, bottomConstant: 0, rightConstant: gutterSpace, widthConstant: 0, heightConstant: 200)
         
         promotionBtn.anchor(nil, left: nil, bottom: self.view.safeAreaLayoutGuide.bottomAnchor, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: viewWidth-24, heightConstant: 50)
         promotionBtn.anchorCenterXToSuperview(constant: 0)
@@ -411,27 +426,7 @@ class MainViewController: UIViewController,UICollectionViewDelegateFlowLayout,UI
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        if (collectionView == paymentOptionsCollectionView)
-        {
-            guard  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? PaymentOptionsCell else {
-                fatalError("Unexpected CollectionView Cell")
-            }
-            cell.headingLbl.text = "Option# \(indexPath.item)"
-            cell.iconImageView.image = UIImage(named: "icon\(indexPath.item)")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate) ??  #imageLiteral(resourceName: "bank-card-front-side").withRenderingMode(UIImageRenderingMode.alwaysTemplate)
-            //cell.selectionImageView.image = UIImage(named: "test")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate) ??  #imageLiteral(resourceName: "bank-card-front-side").withRenderingMode(UIImageRenderingMode.alwaysTemplate)
-            return cell
-        }
-            
-        else
-        {
-            guard  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: commonCellId, for: indexPath) as? CommonCollectionViewCell else {
-                fatalError("Unexpected CollectionView Cell")
-            }
-            //cell.headingLbl.text = "Option# \(indexPath.item)"
-            cell.iconImageView.image = UIImage(named: "bank\(indexPath.item)") ??  #imageLiteral(resourceName: "bank-card-front-side").withRenderingMode(UIImageRenderingMode.alwaysTemplate)
-            cell.selectionImageView.image = UIImage(named: "test")?.withRenderingMode(UIImageRenderingMode.alwaysTemplate) ??  #imageLiteral(resourceName: "bank-card-front-side").withRenderingMode(UIImageRenderingMode.alwaysTemplate)
-            return cell
+
         }
     }
     
@@ -448,15 +443,22 @@ class MainViewController: UIViewController,UICollectionViewDelegateFlowLayout,UI
         }
     }
     
-    /**
-     Method - displayPromotions
-     1) In this method we will create an object of PromotionViewController class and pass that object to the presentpopupViewController with animation type .BottomBottom, which will present the view from the bottom of the display
-     2) also we will hook-up the delegate object of PromotionViewDelegate with the ViewController for the further communication between the VC
-     */
-    @objc fileprivate func displayPromotions(){
-        let vc = PromotionViewController()
-        vc.promotionDelegate = self
-        self.presentpopupViewController(popupViewController: vc, animationType: .BottomBottom, completion:  { () -> Void in })
+    //MARK:
+    //MARK:: TableView Methods
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: saveCardCellId, for: indexPath) as? SavedCardsCell else{
+            fatalError("Unexpected SavedCardsCell")
+        }
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("selected row at = \(indexPath.item)")
+        tableView.invalidateIntrinsicContentSize()
     }
     
     //MARK:
@@ -467,5 +469,18 @@ class MainViewController: UIViewController,UICollectionViewDelegateFlowLayout,UI
      */
     func dismissView(sender: PromotionViewController) {
         self.dismissPopupViewController(animationType: .BottomBottom)
+    }
+    
+    //MARK:
+    //MARK: Promotion View
+    /**
+     Method - displayPromotions
+     1) In this method we will create an object of PromotionViewController class and pass that object to the presentpopupViewController with animation type .BottomBottom, which will present the view from the bottom of the display
+     2) also we will hook-up the delegate object of PromotionViewDelegate with the ViewController for the further communication between the VC
+     */
+    @objc fileprivate func displayPromotions(){
+        let vc = PromotionViewController()
+        vc.promotionDelegate = self
+        self.presentpopupViewController(popupViewController: vc, animationType: .BottomBottom, completion:  { () -> Void in })
     }
 }
