@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		522626EF20BBC295008754F8 /* CommonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522626ED20BBC294008754F8 /* CommonCollectionViewCell.swift */; };
+		522626F020BBC295008754F8 /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522626EE20BBC295008754F8 /* GridLayout.swift */; };
 		524EE10020B52E7E008F8BE2 /* PromotionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524EE0FF20B52E7E008F8BE2 /* PromotionsTableViewCell.swift */; };
 		6D35349220AEDC680045BB79 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35349120AEDC680045BB79 /* MainViewController.swift */; };
 		6D35349520AEE9330045BB79 /* PaymentOptionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D35349420AEE9330045BB79 /* PaymentOptionsCell.swift */; };
@@ -55,6 +57,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		522626ED20BBC294008754F8 /* CommonCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonCollectionViewCell.swift; sourceTree = "<group>"; };
+		522626EE20BBC295008754F8 /* GridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
 		524EE0FF20B52E7E008F8BE2 /* PromotionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionsTableViewCell.swift; sourceTree = "<group>"; };
 		6D35349120AEDC680045BB79 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		6D35349420AEE9330045BB79 /* PaymentOptionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentOptionsCell.swift; sourceTree = "<group>"; };
@@ -116,6 +120,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		522626F120BBC2A5008754F8 /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+				6D35349420AEE9330045BB79 /* PaymentOptionsCell.swift */,
+				522626ED20BBC294008754F8 /* CommonCollectionViewCell.swift */,
+			);
+			path = CustomCells;
+			sourceTree = "<group>";
+		};
 		6D35348F20AEDBCD0045BB79 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +207,7 @@
 		6D94DAE120B2992400D9CA64 /* FlwoLayouts */ = {
 			isa = PBXGroup;
 			children = (
+				522626EE20BBC295008754F8 /* GridLayout.swift */,
 				6D94DAEA20B7F10100D9CA64 /* PaymentOptionGridLayout.swift */,
 			);
 			path = FlwoLayouts;
@@ -212,7 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				6D94DAE120B2992400D9CA64 /* FlwoLayouts */,
-				6D35349420AEE9330045BB79 /* PaymentOptionsCell.swift */,
+				522626F120BBC2A5008754F8 /* CustomCells */,
 			);
 			path = CollectionViewCells;
 			sourceTree = "<group>";
@@ -403,6 +417,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D35349220AEDC680045BB79 /* MainViewController.swift in Sources */,
+				522626EF20BBC295008754F8 /* CommonCollectionViewCell.swift in Sources */,
 				6D3534AC20AEEA260045BB79 /* UIView + AnchorWithConstraints.swift in Sources */,
 				6D3534A720AEEA260045BB79 /* UIViewX.swift in Sources */,
 				6D3534AE20AEEA260045BB79 /* UITextFieldX.swift in Sources */,
@@ -418,6 +433,7 @@
 				6D3534AD20AEEA260045BB79 /* UIViewAnchorPoint.swift in Sources */,
 				6D94DAE520B4261500D9CA64 /* PromotionViewController.swift in Sources */,
 				6D94DAEB20B7F10100D9CA64 /* PaymentOptionGridLayout.swift in Sources */,
+				522626F020BBC295008754F8 /* GridLayout.swift in Sources */,
 				6D3534B420AEEF5B0045BB79 /* UIColorExtension.swift in Sources */,
 				6D94DAE320B4253A00D9CA64 /* UIViewController+Keyboard.swift in Sources */,
 				6D3534A920AEEA260045BB79 /* UIButtonX.swift in Sources */,
